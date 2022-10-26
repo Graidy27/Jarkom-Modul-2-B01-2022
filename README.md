@@ -151,14 +151,14 @@ echo nameserver 192.168.122.1 > /etc/resolv.conf
 
 2. no1.sh
 - Pada `SSS`, digunakan untuk install package `dnsutils` dan `lynx`.
-![image](picts/SSS_no1-1.png)
-![image](picts/SSS_no1-2.png)
+![image](pics/SSS_no1-1.png)
+![image](pics/SSS_no1-2.png)
 
 - Pada `WISE` `dan berlint`, digunakan untuk install package `bind9`.
-![image](picts/WISE_no1-1.png)
-![image](picts/WISE_no1-2.png)
-![image](picts/berlint_no1-1.png)
-![image](picts/berlint_no1-2.png)
+![image](pics/WISE_no1-1.png)
+![image](pics/WISE_no1-2.png)
+![image](pics/berlint_no1-1.png)
+![image](pics/berlint_no1-2.png)
 
 - Pada `Eden`, digunakan untuk install package `apache2` dan `php`.
 
