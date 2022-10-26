@@ -130,7 +130,7 @@ iface eth0 inet static
 cd
 bash enable-internet.sh
 ```
-- Pada node SSS, Garden, WISE, Berlint, dan Eden ketikkan command berikut:
+- Pada node `SSS`, `WISE`, `Berlint`, dan `Eden` ketikkan command berikut:
 ```
 cd
 bash no1.sh
@@ -138,11 +138,29 @@ bash no1.sh
 - Restart kembali semua node.
 19. Semua node sekarang sudah bisa melakukan ping ke www.google.com (sudah terhubung ke internet).
 
+<br>
+Catatan: node `Garden` tidak dilakukan apa-apa karena peran `client` sudah diwakilkan oleh node `SSS`.
+
 ### Penjelasan File .sh
 1. enable-internet.sh
-2. no1.sh
+- Command berikut digunakan untuk menghubungkan router Ostania ke internet
+```
+iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE -s 192.173.0.0/16
+echo nameserver 192.168.122.1 > /etc/resolv.conf
+```
 
-### Screenshot
+2. no1.sh
+- Pada `SSS`, digunakan untuk install package `dnsutils` dan `lynx`.
+![image](picts/SSS_no1-1.png)
+![image](picts/SSS_no1-2.png)
+
+- Pada `WISE` `dan berlint`, digunakan untuk install package `bind9`.
+![image](picts/WISE_no1-1.png)
+![image](picts/WISE_no1-2.png)
+![image](picts/berlint_no1-1.png)
+![image](picts/berlint_no1-2.png)
+
+- Pada `Eden`, digunakan untuk install package `apache2` dan `php`.
 
 
 ## Nomor 2
