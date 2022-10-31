@@ -254,7 +254,7 @@ nameserver 192.168.122.1
 - ping alias `www.wise.b01.com` dengan `pinging www.wise.b01.com`
 <br/>
 <br/>
-Foto ketika file `no2-check.sh` dijalankan <br/>
+Foto ketika file `no2-check.sh` dijalankan
 ![image](pics/SSS_no2.png)
 <br/>
 
@@ -285,7 +285,7 @@ Foto ketika file `no2.sh` dijalankan
 - ping alias dengan command `ping www.eden.wise.b01.com -c 5`
 <br/>
 <br/>
-Foto ketika file `no3-check.sh` dijalankan <br/>
+Foto ketika file `no3-check.sh` dijalankan
 ![image](pics/SSS_no3.png)
 <br/>
 
@@ -325,7 +325,7 @@ $TTL    604800
 - Merestart bind9 dengan command `service bind9 restart`
 <br/>
 <br/>
-Foto ketika file `no4.sh` dijalankan <br/>
+Foto ketika file `no4.sh` dijalankan
 ![image](pics/WISE_no4.png)
 <br/>
 
@@ -333,7 +333,7 @@ Foto ketika file `no4.sh` dijalankan <br/>
 - check reverse DNS dengan command `host -t PTR 192.173.3.3`
 <br/>
 <br/>
-Foto ketika file `no4-check.sh` dijalankan <br/>
+Foto ketika file `no4-check.sh` dijalankan
 ![image](pics/SSS_no4.png)
 <br/>
 
@@ -358,7 +358,7 @@ service bind9 status
 ```
 <br/>
 <br/>
-Foto ketika file `no5.sh` dijalankan <br/>
+Foto ketika file `no5.sh` dijalankan
 ![image](pics/WISE_no5.png)
 <br/>
 
@@ -376,7 +376,7 @@ zone "wise.b01.com" {
 - Merestart bind9 dengan command `service bind9 restart`
 <br/>
 <br/>
-Foto ketika file `no5.sh` dijalankan <br/>
+Foto ketika file `no5.sh` dijalankan
 ![image](pics/Berlint_no5.png)
 <br/>
 
@@ -384,7 +384,7 @@ Foto ketika file `no5.sh` dijalankan <br/>
 - `ping wise.b01.com -c 5`
 <br/>
 <br/>
-Foto ketika file `no5-check.sh` dijalankan <br/>
+Foto ketika file `no5-check.sh` dijalankan
 ![image](pics/SSS_no5.png)
 <br/>
 
@@ -419,7 +419,7 @@ options {
 - Merestart bind9 dengan command `service bind9 restart`
 <br/>
 <br/>
-Foto ketika file `no6.sh` dijalankan <br/>
+Foto ketika file `no6.sh` dijalankan
 ![image](pics/WISE_no6.png)
 <br/>
 
@@ -474,7 +474,7 @@ www     IN      CNAME   operation.wise.b01.com.
 - Merestart bind9 dengan command `service bind9 restart`
 <br/>
 <br/>
-Foto ketika file `no6.sh` dijalankan <br/>
+Foto ketika file `no6.sh` dijalankan
 ![image](pics/Berlint_no6.png)
 <br/>
 
@@ -484,7 +484,7 @@ Foto ketika file `no6.sh` dijalankan <br/>
 - Ping alias dengan `ping www.operation.wise.b01.com -c 5`
 <br/>
 <br/>
-Foto ketika file `no6-check.sh` dijalankan <br/>
+Foto ketika file `no6-check.sh` dijalankan
 ![image](pics/SSS_no6.png)
 <br/>
 
@@ -514,7 +514,7 @@ www.strix       IN      CNAME   strix
 - Merestart bind9 dengan command `service bind9 restart`
 <br/>
 <br/>
-Foto ketika file `no6.sh` dijalankan <br/>
+Foto ketika file `no6.sh` dijalankan
 ![image](pics/Berlint_no7.png)
 <br/>
 
@@ -524,7 +524,7 @@ Foto ketika file `no6.sh` dijalankan <br/>
 - Ping alias dengan `ping www.strix.operation.wise.b01.com -c 5`
 <br/>
 <br/>
-Foto ketika file `no7-check.sh` dijalankan <br/>
+Foto ketika file `no7-check.sh` dijalankan
 ![image](pics/SSS_no7.png)
 <br/>
 
