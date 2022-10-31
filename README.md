@@ -7,7 +7,7 @@ Anggota :
 
 ---
 ## Tabel Konten
-- [Pembagian tugas](pembagian-tugas)
+- [Pembagian tugas](#pembagian-tugas)
 - [Soal 1](#nomor-1)
 - [Soal 2](#nomor-2)
 - [Soal 3](#nomor-3)
@@ -172,8 +172,8 @@ echo nameserver 192.168.122.1 > /etc/resolv.conf
 apt-get update
 apt-get install bind9 -y
 ```
-![image](pics/berlint_no1-1.png)
-![image](pics/berlint_no1-2.png)
+![image](pics/Berlint_no1-1.png)
+![image](pics/Berlint_no1-2.png)
 
 - Pada `Eden`, digunakan untuk install package `apache2`, `php`, `libapache2-mod-php7.0`, `unzip`, dan `git`; serta setting nameserver.
 ```
@@ -187,7 +187,7 @@ apt-get install unzip -y
 apt-get install git -y
 ```
 ![image](pics/Eden_no1-1.png)
-![image](pics/Eden_no1-2,png)
+![image](pics/Eden_no1-2.png)
 <br/>
 ## Nomor 2
 ### Soal
