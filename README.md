@@ -280,7 +280,7 @@ www.eden        IN      CNAME   eden.wise
 - Merestart bind9 dengan command `service bind9 restart`
 <br/>
 <br/>
-Foto ketika file `no3.sh` dijalankan <br/>
+Foto ketika file `no3.sh` dijalankan
 ![image](pics/WISE_no3.png)
 <br/>
 
