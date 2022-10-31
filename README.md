@@ -166,7 +166,6 @@ apt-get install bind9 -y
 
 - Pada `berlint` digunakan untuk install package `bind9` serta setting nameserver.
 ```
-echo -e '
 echo "installing necessary package(s) for DNS Slave"
 echo nameserver 192.168.122.1 > /etc/resolv.conf
 apt-get update
@@ -194,9 +193,8 @@ apt-get install git -y
 Untuk mempermudah mendapatkan informasi mengenai misi dari Handler, bantulah Loid membuat website utama dengan akses wise.yyy.com dengan alias www.wise.yyy.com pada folder wise
 <br/>
 ### Penyelesaian
-- Pada wise (file `no2.sh`)
-  - Membuat file `no2.sh` pada root dan mengisinya dengan hal-hal berikut:<br/>
-  - Membuat zone "wise.b01.com" pada file named.conf.local
+1. Di `wise`, membuat file `no2.sh` pada root dan mengisinya dengan hal-hal berikut:<br/>
+- Membuat zone "wise.b01.com" pada file named.conf.local
 ```
 echo -e '
 zone "wise.b01.com" {
@@ -207,15 +205,15 @@ zone "wise.b01.com" {
 ```
 <br/>
 
-  - Membuat folder wise
+- Membuat folder wise
 ```
 mkdir /etc/bind/wise
 ```
-  - Menyalin file `db.local` ke dalam folder `wise` dan menamakannya `wise.b01.com`
+- Menyalin file `db.local` ke dalam folder `wise` dan menamakannya `wise.b01.com`
 ```
 cp /etc/bind/db.local /etc/bind/wise/wise.b01.com
 ```
-  - Melakukan konfigurasi file `wise.b01.com`
+- Melakukan konfigurasi file `wise.b01.com`
 ```
 echo -e '
 ;
@@ -236,37 +234,309 @@ www     IN      CNAME   wise.b01.com.
 ' > /etc/bind/wise/wise.b01.com
 ```
 
+- Merestart bind9 dengan command `service bind9 restart`
+<br/>
+<br/>
+Foto ketika file `no2.sh` dijalankan <br/>
+![image](pics/WISE_no2.png)
+<br/>
+
+2. Untuk check, membuat file `no2-check.sh` pada `SSS` (client), lalu mengisinya dengan command berikut:<br/>
+- setting nameserver
+```
+echo '
+nameserver 192.173.2.2          //IP WISE
+nameserver 192.173.3.2          //IP Berlint
+nameserver 192.168.122.1
+' > /etc/resolv.conf
+```
+
+- ping domain `wise.b01.com` dengan `ping wise.b01.com -c 5`
+- cek alias `www.wise.b01.com` dengan `host -t CNAME www.wise.b01.com`
+- ping alias `www.wise.b01.com` dengan `pinging www.wise.b01.com`
+<br/>
+<br/>
+Foto ketika file `no2-check.sh` dijalankan <br/>
+![image](pics/SSS_no2.png)
 <br/>
 
 ## Nomor 3
 ### Soal
+Setelah itu ia juga ingin membuat subdomain eden.wise.yyy.com dengan alias www.eden.wise.yyy.com yang diatur DNS-nya di WISE dan mengarah ke Eden
+<br/>
 ### Penyelesaian
-### Penjelasan File .sh
+1. Di `wise`, membuat file `no3.sh` pada root dan mengisinya dengan hal-hal berikut:<br/>
+- Menambahkan subdomain pada file `wise.b01.com`
+```
+...
+@       IN      NS      wise.b01.com.
+@       IN      A       192.173.3.3
+www     IN      CNAME   wise.b01.com.
+eden    IN      A       192.173.3.3     ;IP Eden
+www.eden        IN      CNAME   eden.wise
+@       IN      AAAA    ::1
+' > /etc/bind/wise/wise.b01.com
+```
+- Merestart bind9 dengan command `service bind9 restart`
+<br/>
+<br/>
+Foto ketika file `no3.sh` dijalankan <br/>
+![image](pics/WISE_no3.png)
+<br/>
+
+2. Untuk check, membuat file `no3-check.sh` pada `SSS` (client), lalu mengisinya dengan command berikut:<br/>
+- ping `eden.wise.b01.com` dengan command `ping eden.wise.b01.com -c 5`
+- check alias `www.eden.wise.b01.com` dengan command `host -t CNAME www.eden.wise.b01.com`
+- ping alias dengan command `ping www.eden.wise.b01.com -c 5`
+<br/>
+<br/>
+Foto ketika file `no3-check.sh` dijalankan <br/>
+![image](pics/SSS_no3.png)
+<br/>
 
 ## Nomor 4
 ### Soal
+Buat juga reverse domain untuk domain utama <br/>
 ### Penyelesaian
-### Penjelasan File .sh
+1. Di `wise`, membuat file `no4.sh` pada root dan mengisinya dengan hal-hal berikut:<br/>
+- Menambahkan zone "3.173.192.in-addr.arpa" pada `/etc/bind/named.conf.local`
+```
+zone "3.173.192.in-addr.arpa" {
+    type master;
+    file "/etc/bind/wise/3.173.192.in-addr.arpa";
+};
+```
+
+- Menyalin file `db.local` ke dalam folder `wise` dan menamakannya `3.173.192.in-addr.arpa`
+```
+cp /etc/bind/db.local /etc/bind/wise/3.173.192.in-addr.arpa
+```
+- Melakukan konfigurasi file `3.173.192.in-addr.arpa`
+```
+;
+; BIND data file for local loopback interface
+;
+$TTL    604800
+@       IN      SOA     wise.b01.com. root.wise.b01.com. (
+                        2               ; Serial
+                        604800          ; Refresh
+                        86400           ; Retry
+                        2419200         ; Expire
+                        604800 )        ; Negative Cache TTL
+;
+3.173.192.in-addr.arpa.         IN      NS      wise.b01.com.
+3                               IN      PTR       wise.b01.com.
+```
+- Merestart bind9 dengan command `service bind9 restart`
+<br/>
+<br/>
+Foto ketika file `no4.sh` dijalankan <br/>
+![image](pics/WISE_no4.png)
+<br/>
+
+2. Untuk check, membuat file `no4-check.sh` pada `SSS` (client), lalu mengisinya dengan command berikut: <br/>
+- check reverse DNS dengan command `host -t PTR 192.173.3.3`
+<br/>
+<br/>
+Foto ketika file `no4-check.sh` dijalankan <br/>
+![image](pics/SSS_no4.png)
+<br/>
 
 ## Nomor 5
 ### Soal
+Agar dapat tetap dihubungi jika server WISE bermasalah, buatlah juga Berlint sebagai DNS Slave untuk domain utama
 ### Penyelesaian
-### Penjelasan File .sh
+1. Di `wise`, membuat file `no5.sh` pada root dan mengisinya dengan hal-hal berikut:<br/>
+- allow notify dan transfer pada konfigurasi zone "wise.b01.com"
+```
+notify yes;
+also-notify { 192.173.3.2; };           //IP Berlint
+allow-transfer { 192.173.3.2; };        //IP Berlint
+```
+- Setelah file dengan nama yang sama, yaitu `no5.sh`, pada berlint telah selesai dijalankan, mematikan service bind9
+```
+echo 'Stopping bind9 services? (y)'
+read var
+sleep 1
+service bind9 stop
+service bind9 status
+```
+<br/>
+<br/>
+Foto ketika file `no5.sh` dijalankan <br/>
+![image](pics/WISE_no5.png)
+<br/>
+
+2. Di `berilnt`, membuat file `no5.sh` pada root dan mengisinya dengan hal-hal berikut:<br/>
+- Membuat konfigurasi zone "wise.b01.com" pada file `named.conf.local`
+```
+echo -e '
+zone "wise.b01.com" {
+        type slave;
+        masters { 192.173.2.2; }; // IP WISE
+        file "/var/lib/bind/wise.b01.com";
+};
+' > /etc/bind/named.conf.local
+```
+- Merestart bind9 dengan command `service bind9 restart`
+<br/>
+<br/>
+Foto ketika file `no5.sh` dijalankan <br/>
+![image](pics/Berlint_no5.png)
+<br/>
+
+3. Untuk check, membuat file `no5-check.sh` pada `SSS` (client), lalu mengisinya dengan command berikut:<br/>
+- `ping wise.b01.com -c 5`
+<br/>
+<br/>
+Foto ketika file `no5-check.sh` dijalankan <br/>
+![image](pics/SSS_no5.png)
+<br/>
 
 ## Nomor 6
 ### Soal
+Karena banyak informasi dari Handler, buatlah subdomain yang khusus untuk operation yaitu operation.wise.yyy.com dengan alias www.operation.wise.yyy.com yang didelegasikan dari WISE ke Berlint dengan IP menuju ke Eden dalam folder operation
 ### Penyelesaian
-### Penjelasan File .sh
+1. Di `wise`, membuat file `no6.sh` pada root dan mengisinya dengan hal-hal berikut:<br/>
+- Melakukan konfigurasi domain `operation.wise.b01.com` pada file `wise.b01.com`
+```
+@       IN      NS      wise.b01.com.
+@       IN      A       192.173.3.3
+www     IN      CNAME   wise.b01.com.
+eden    IN      A       192.173.3.3     ;IP Eden
+www.eden.wise.b01.com.  IN      CNAME   eden.wise.b01.com.
+ns1     IN      A       192.173.3.2     ;IP Berlint
+operation       IN      NS      ns1
+@       IN      AAAA    ::1
+```
+- Mengomen `dnssec-validation auto;` dan menambahkan command `allow-query{any;};` pada file `named.conf.options`
+```
+echo -e '
+options {
+        directory "/var/cache/bind";
+        //dnssec-validation auto;
+        allow-query{any;};
+        auth-nxdomain no;    # conform to RFC1035
+        listen-on-v6 { any; };
+};
+' > /etc/bind/named.conf.options
+```
+- Merestart bind9 dengan command `service bind9 restart`
+<br/>
+<br/>
+Foto ketika file `no6.sh` dijalankan <br/>
+![image](pics/WISE_no6.png)
+<br/>
+
+2. Di `berilnt`, membuat file `no6.sh` pada root dan mengisinya dengan hal-hal berikut:<br/>
+- Mengomen `dnssec-validation auto;` dan menambahkan command `allow-query{any;};` pada file `named.conf.options`
+```
+echo -e '
+options {
+        directory "/var/cache/bind";
+        //dnssec-validation auto;
+        allow-query{any;};
+        auth-nxdomain no;    # conform to RFC1035
+        listen-on-v6 { any; };
+};
+' > /etc/bind/named.conf.options
+```
+- Melakukan konfigurasi zone "operation.wise.b01.com" pada file `named.conf.local`
+```
+echo -e '
+zone "operation.wise.b01.com" {
+        type master;
+        file "/etc/bind/operation/operation.wise.b01.com";
+};
+' > /etc/bind/named.conf.local
+```
+
+- Membuat folder `operation` dengan command `mkdir /etc/bind/operation`
+- Menyalin file `db.local` ke dalam folder `operation` dan menamakannya `operation.wise.b01.com`
+```
+cp /etc/bind/db.local /etc/bind/wise/wise.b01.com
+```
+
+- Melakukan konfigurasi file `operation.wise.b01.com`
+```
+echo 'editing file operation.wise.b01.com'
+sleep 1
+echo -e '
+$TTL    604800
+@       IN      SOA     operation.wise.b01.com. root.operation.wise.b01.com. (
+                              2         ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                        604800 )       ; Negative Cache TTL
+;
+@       IN      NS      operation.wise.b01.com.
+@       IN      A       192.173.3.3
+www     IN      CNAME   operation.wise.b01.com.
+' > /etc/bind/operation/operation.wise.b01.com
+```
+
+- Merestart bind9 dengan command `service bind9 restart`
+<br/>
+<br/>
+Foto ketika file `no6.sh` dijalankan <br/>
+![image](pics/Berlint_no6.png)
+<br/>
+
+3. Untuk check, membuat file `no6-check.sh` pada `SSS` (client), lalu mengisinya dengan command berikut:<br/>
+- Ping domain baru dengan `ping operation.wise.b01.com -c 5`
+- Check alias dengan `host -t CNAME www.operation.wise.b01.com`
+- Ping alias dengan `ping www.operation.wise.b01.com -c 5`
+<br/>
+<br/>
+Foto ketika file `no6-check.sh` dijalankan <br/>
+![image](pics/SSS_no6.png)
+<br/>
 
 ## Nomor 7
 ### Soal
+Untuk informasi yang lebih spesifik mengenai Operation Strix, buatlah subdomain melalui Berlint dengan akses strix.operation.wise.yyy.com dengan alias www.strix.operation.wise.yyy.com yang mengarah ke Eden
 ### Penyelesaian
-### Penjelasan File .sh
+1. Di `berilnt`, membuat file `no7.sh` pada root dan mengisinya dengan hal-hal berikut:<br/>
+- Menambahkan konfigurasi sub-domain pada file `operation.wise.b01.com`
+```
+echo -e '
+$TTL    604800
+@       IN      SOA     operation.wise.b01.com. root.operation.wise.b01.com. (
+                              2         ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                        604800 )       ; Negative Cache TTL
+;
+@       IN      NS      operation.wise.b01.com.
+@       IN      A       192.173.3.3
+www     IN      CNAME   operation.wise.b01.com.
+strix   IN      A       192.173.3.3
+www.strix       IN      CNAME   strix
+' > /etc/bind/operation/operation.wise.b01.com
+```
+- Merestart bind9 dengan command `service bind9 restart`
+<br/>
+<br/>
+Foto ketika file `no6.sh` dijalankan <br/>
+![image](pics/Berlint_no7.png)
+<br/>
+
+2. Untuk check, membuat file `no7-check.sh` pada `SSS` (client), lalu mengisinya dengan command berikut:<br/>
+- Ping domain baru dengan `ping strix.operation.wise.b01.com -c 5`
+- Check alias dengan `host -t CNAME www.strix.operation.wise.b01.com`
+- Ping alias dengan `ping www.strix.operation.wise.b01.com -c 5`
+<br/>
+<br/>
+Foto ketika file `no7-check.sh` dijalankan <br/>
+![image](pics/SSS_no7.png)
+<br/>
 
 ## Nomor 8
 ### Soal
+Setelah melakukan konfigurasi server, maka dilakukan konfigurasi Webserver. Pertama dengan webserver www.wise.yyy.com. Pertama, Loid membutuhkan webserver dengan DocumentRoot pada /var/www/wise.yyy.com
 ### Penyelesaian
-### Penjelasan File .sh
 
 ## Nomor 9
 ### Soal
