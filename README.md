@@ -348,7 +348,6 @@ sleep 1
 service bind9 stop
 service bind9 status
 ```
-<br/>
 Foto ketika file `no5.sh` dijalankan
 ![image](pics/WISE_no5.png)
 <br/>
