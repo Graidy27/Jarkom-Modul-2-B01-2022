@@ -543,8 +543,7 @@ unzip Jarkom-Modul-2-B01-2022/assets/wise.zip
 
 - Menghapus file yang tidak diperlukan dengan `rm -r Jarkom-Modul-2-B01-2022`
 - Menyalin folder `wise` dan seluruh isinya ke `/var/www` dan mengubah namanya menjadi `wise.b01.com`
-```cp -r wise /var/www/wise.b01.com```
-<br/>
+```cp -r wise /var/www/wise.b01.com```<br/>
 Foto ketika file `no8.sh` dijalankan
 ![image](pics/Eden_no8.png)
 <br/>
