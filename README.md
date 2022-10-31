@@ -234,7 +234,7 @@ www     IN      CNAME   wise.b01.com.
 ' > /etc/bind/wise/wise.b01.com
 ```
 
-- Merestart bind9 dengan command `service bind9 restart`
+- Merestart bind9 dengan command `service bind9 restart` <br/><br/>
 Foto ketika file `no2.sh` dijalankan
 ![image](pics/WISE_no2.png)
 
@@ -275,12 +275,9 @@ www.eden        IN      CNAME   eden.wise
 @       IN      AAAA    ::1
 ' > /etc/bind/wise/wise.b01.com
 ```
-- Merestart bind9 dengan command `service bind9 restart`
-<br/>
-<br/>
-Foto ketika file `no3.sh` dijalankan
-![image](pics/WISE_no3.png)
-<br/>
+- Merestart bind9 dengan command `service bind9 restart` <br/><br/>
+Foto ketika file `no2.sh` dijalankan
+![image](pics/WISE_no2.png)
 
 2. Untuk check, membuat file `no3-check.sh` pada `SSS` (client), lalu mengisinya dengan command berikut:<br/>
 - ping `eden.wise.b01.com` dengan command `ping eden.wise.b01.com -c 5`
