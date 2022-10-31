@@ -235,9 +235,7 @@ www     IN      CNAME   wise.b01.com.
 ```
 
 - Merestart bind9 dengan command `service bind9 restart`
-<br/>
-<br/>
-Foto ketika file `no2.sh` dijalankan <br/>
+Foto ketika file `no2.sh` dijalankan
 ![image](pics/WISE_no2.png)
 
 
