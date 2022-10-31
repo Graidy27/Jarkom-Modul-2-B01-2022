@@ -234,11 +234,9 @@ www     IN      CNAME   wise.b01.com.
 ' > /etc/bind/wise/wise.b01.com
 ```
 
-- Merestart bind9 dengan command `service bind9 restart`
-<br/>
-<br/>
-Foto ketika file `no2.sh` dijalankan <br/>
-![image](pics/Eden_no1-2.png)
+- Merestart bind9 dengan command `service bind9 restart` <br/><br/>
+Foto ketika file `no2.sh` dijalankan
+![image](pics/WISE_no2.png)
 
 
 2. Untuk check, membuat file `no2-check.sh` pada `SSS` (client), lalu mengisinya dengan command berikut:<br/>
@@ -253,10 +251,8 @@ nameserver 192.168.122.1
 
 - ping domain `wise.b01.com` dengan `ping wise.b01.com -c 5`
 - cek alias `www.wise.b01.com` dengan `host -t CNAME www.wise.b01.com`
-- ping alias `www.wise.b01.com` dengan `pinging www.wise.b01.com`
-<br/>
-<br/>
-Foto ketika file `no2-check.sh` dijalankan <br/>
+- ping alias `www.wise.b01.com` dengan `pinging www.wise.b01.com` <br/><br/>
+Foto ketika file `no2-check.sh` dijalankan
 ![image](pics/SSS_no2.png)
 <br/>
 
@@ -277,20 +273,15 @@ www.eden        IN      CNAME   eden.wise
 @       IN      AAAA    ::1
 ' > /etc/bind/wise/wise.b01.com
 ```
-- Merestart bind9 dengan command `service bind9 restart`
-<br/>
-<br/>
-Foto ketika file `no3.sh` dijalankan
-![image](pics/WISE_no3.png)
-<br/>
+- Merestart bind9 dengan command `service bind9 restart` <br/><br/>
+Foto ketika file `no2.sh` dijalankan
+![image](pics/WISE_no2.png)
 
 2. Untuk check, membuat file `no3-check.sh` pada `SSS` (client), lalu mengisinya dengan command berikut:<br/>
 - ping `eden.wise.b01.com` dengan command `ping eden.wise.b01.com -c 5`
 - check alias `www.eden.wise.b01.com` dengan command `host -t CNAME www.eden.wise.b01.com`
-- ping alias dengan command `ping www.eden.wise.b01.com -c 5`
-<br/>
-<br/>
-Foto ketika file `no3-check.sh` dijalankan <br/>
+- ping alias dengan command `ping www.eden.wise.b01.com -c 5` <br/><br/>
+Foto ketika file `no3-check.sh` dijalankan
 ![image](pics/SSS_no3.png)
 <br/>
 
@@ -327,18 +318,14 @@ $TTL    604800
 3.173.192.in-addr.arpa.         IN      NS      wise.b01.com.
 3                               IN      PTR       wise.b01.com.
 ```
-- Merestart bind9 dengan command `service bind9 restart`
-<br/>
-<br/>
-Foto ketika file `no4.sh` dijalankan <br/>
+- Merestart bind9 dengan command `service bind9 restart` <br/><br/>
+Foto ketika file `no4.sh` dijalankan
 ![image](pics/WISE_no4.png)
 <br/>
 
 2. Untuk check, membuat file `no4-check.sh` pada `SSS` (client), lalu mengisinya dengan command berikut: <br/>
-- check reverse DNS dengan command `host -t PTR 192.173.3.3`
-<br/>
-<br/>
-Foto ketika file `no4-check.sh` dijalankan <br/>
+- check reverse DNS dengan command `host -t PTR 192.173.3.3` <br/><br/>
+Foto ketika file `no4-check.sh` dijalankan
 ![image](pics/SSS_no4.png)
 <br/>
 
@@ -361,9 +348,7 @@ sleep 1
 service bind9 stop
 service bind9 status
 ```
-<br/>
-<br/>
-Foto ketika file `no5.sh` dijalankan <br/>
+Foto ketika file `no5.sh` dijalankan
 ![image](pics/WISE_no5.png)
 <br/>
 
@@ -378,18 +363,14 @@ zone "wise.b01.com" {
 };
 ' > /etc/bind/named.conf.local
 ```
-- Merestart bind9 dengan command `service bind9 restart`
-<br/>
-<br/>
-Foto ketika file `no5.sh` dijalankan <br/>
+- Merestart bind9 dengan command `service bind9 restart` <br/><br/>
+Foto ketika file `no5.sh` dijalankan
 ![image](pics/Berlint_no5.png)
 <br/>
 
 3. Untuk check, membuat file `no5-check.sh` pada `SSS` (client), lalu mengisinya dengan command berikut:<br/>
-- `ping wise.b01.com -c 5`
-<br/>
-<br/>
-Foto ketika file `no5-check.sh` dijalankan <br/>
+- `ping wise.b01.com -c 5` <br/><br/>
+Foto ketika file `no5-check.sh` dijalankan
 ![image](pics/SSS_no5.png)
 <br/>
 
@@ -421,10 +402,8 @@ options {
 };
 ' > /etc/bind/named.conf.options
 ```
-- Merestart bind9 dengan command `service bind9 restart`
-<br/>
-<br/>
-Foto ketika file `no6.sh` dijalankan <br/>
+- Merestart bind9 dengan command `service bind9 restart` <br/><br/>
+Foto ketika file `no6.sh` dijalankan
 ![image](pics/WISE_no6.png)
 <br/>
 
@@ -476,20 +455,16 @@ www     IN      CNAME   operation.wise.b01.com.
 ' > /etc/bind/operation/operation.wise.b01.com
 ```
 
-- Merestart bind9 dengan command `service bind9 restart`
-<br/>
-<br/>
-Foto ketika file `no6.sh` dijalankan <br/>
+- Merestart bind9 dengan command `service bind9 restart` <br/><br/>
+Foto ketika file `no6.sh` dijalankan
 ![image](pics/Berlint_no6.png)
 <br/>
 
 3. Untuk check, membuat file `no6-check.sh` pada `SSS` (client), lalu mengisinya dengan command berikut:<br/>
 - Ping domain baru dengan `ping operation.wise.b01.com -c 5`
 - Check alias dengan `host -t CNAME www.operation.wise.b01.com`
-- Ping alias dengan `ping www.operation.wise.b01.com -c 5`
-<br/>
-<br/>
-Foto ketika file `no6-check.sh` dijalankan <br/>
+- Ping alias dengan `ping www.operation.wise.b01.com -c 5` <br/><br/>
+Foto ketika file `no6-check.sh` dijalankan
 ![image](pics/SSS_no6.png)
 <br/>
 
@@ -516,20 +491,16 @@ strix   IN      A       192.173.3.3
 www.strix       IN      CNAME   strix
 ' > /etc/bind/operation/operation.wise.b01.com
 ```
-- Merestart bind9 dengan command `service bind9 restart`
-<br/>
-<br/>
-Foto ketika file `no6.sh` dijalankan <br/>
+- Merestart bind9 dengan command `service bind9 restart` <br/><br/>
+Foto ketika file `no6.sh` dijalankan
 ![image](pics/Berlint_no7.png)
 <br/>
 
 2. Untuk check, membuat file `no7-check.sh` pada `SSS` (client), lalu mengisinya dengan command berikut:<br/>
 - Ping domain baru dengan `ping strix.operation.wise.b01.com -c 5`
 - Check alias dengan `host -t CNAME www.strix.operation.wise.b01.com`
-- Ping alias dengan `ping www.strix.operation.wise.b01.com -c 5`
-<br/>
-<br/>
-Foto ketika file `no7-check.sh` dijalankan <br/>
+- Ping alias dengan `ping www.strix.operation.wise.b01.com -c 5` <br/><br/>
+Foto ketika file `no7-check.sh` dijalankan
 ![image](pics/SSS_no7.png)
 <br/>
 
