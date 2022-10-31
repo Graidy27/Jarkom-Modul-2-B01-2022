@@ -611,7 +611,7 @@ echo -e '
 - Menyalakan konfigurasi `eden.wise.b01.com.conf` dengan `a2ensite eden.wise.b01.com.conf`
 - Menjalankan ulang service `apache2` dengan `service apache2 restart` <br/><br/>
 - Menyalin folder `eden.wise` dan seluruh isinya ke `/var/www` dan mengubah namanya menjadi `eden.wise.b01.com`
-```cp -r eden.wise /var/www/eden.wise.b01.com```
+```cp -r eden.wise /var/www/eden.wise.b01.com``` <br/>
 Foto ketika file `no10.sh` dijalankan
 ![image](pics/Eden_no10.png)
 <br/>
@@ -760,6 +760,7 @@ Foto ketika file `no14-15-check.sh` dijalankan
 ![image](pics/SSS_no15-1.png)<br/>
 ![image](pics/SSS_no15-2.png)<br/>
 ![image](pics/SSS_no15-3.png)<br/>
+![image](pics/SSS_no14.png)<br/>
 
 (baik port 15000 maupun 15500 menampilkan hal yang sama) <br/><br/>
 
