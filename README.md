@@ -822,6 +822,6 @@ Foto ketika file `no17.sh` dijalankan
 
 2. Untuk check, membuat file `no17.sh` pada `SSS` (client), lalu mengisinya dengan command `lynx eden.wise.b01.com/public/images/eden-student`<br/><br/>
 Foto ketika file `no17.sh` dijalankan
-![image](pics/SSS_no17-1.png) <br/>
 ![image](pics/SSS_no17-2.png) <br/>
+![image](pics/SSS_no17-1.png) <br/>
 <br/>
