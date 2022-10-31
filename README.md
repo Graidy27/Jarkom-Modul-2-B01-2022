@@ -508,6 +508,19 @@ Foto ketika file `no7-check.sh` dijalankan
 ### Soal
 Setelah melakukan konfigurasi server, maka dilakukan konfigurasi Webserver. Pertama dengan webserver www.wise.yyy.com. Pertama, Loid membutuhkan webserver dengan DocumentRoot pada /var/www/wise.yyy.com
 ### Penyelesaian
+1. Di `Eden`
+- 
+- <br/><br/>
+Foto ketika file `no8.sh` dijalankan
+![image](pics/Eden_no8.png)
+<br/>
+
+2. Untuk check, membuat file `no8-check.sh` pada `SSS` (client), lalu mengisinya dengan command berikut:<br/>
+- 
+- <br/><br/>
+Foto ketika file `no8-check.sh` dijalankan
+![image](pics/SSS_no9.png)
+<br/>
 
 ## Nomor 9
 ### Soal
