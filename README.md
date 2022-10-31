@@ -28,7 +28,9 @@ Anggota :
 - [Kesulitan](#kesulitan)
 
 ## Pembagian Tugas
-- Graidy = nomor 1 hingga nomor 7
+> Ichsanul Aulia - 7 hingga 11\
+> Alfin Indrawan - 1 hingga 6\
+> Graidy Megananda - 12 hingga
 
 ## Nomor 1
 ### Soal
@@ -43,26 +45,13 @@ WISE akan dijadikan sebagai DNS Master, Berlint akan dijadikan DNS Slave, dan Ed
 6. Klik tombol `Add a node` di samping kiri.
 7. Lalu tarik `ubuntu-1` ke area kosong di halaman.
 8. Tunggu hingga proses loading selesai.
-9. Jika berhasil, maka akan menampilkan tampilan seperti berikut : <br>
-![image]
-
-10. Klik kanan dan `change hostname` menjadi `Ostania` <br>
-![image]
-
-11. Klik kanan kembali dan `change symbol` menjadi symbol `router` <br>
-![image]
-
-12. Lakukanlah langkah 6 hingga 10 untuk node `SSS`, `Garden`, `WISE`, `Berlint`, dan `Eden` sehingga didapatkan tampilan sebagai berikut : <br>
-![image]
-
-13. Klik tombol `Add a node` di samping kiri.
-14. Tarik `NAT` dan dua `Switch` ke area kosong di halaman. <br>
-![image]
-
-15. Klik `Add a Link` dan tambahkan link untuk menghubungkan setiap node dan switch sehingga didapatkan tampilan sebagai berikut: <br>
-![image]
-
-16. Kita perlu melakukan setting network pada masing-masing node dengan fitur `Edit network configuration`, untuk konfigurasi network pada masing - masing node diisi dengan setting sebagai berikut :
+9. Klik kanan pada note dan `change hostname` menjadi `Ostania`
+10. Klik kanan kembali dan `change symbol` menjadi symbol `router`
+11. Lakukanlah langkah 6 hingga 9 untuk node `SSS`, `Garden`, `WISE`, `Berlint`, dan `Eden`.
+12. Klik tombol `Add a node` di samping kiri.
+13. Tarik `NAT` dan dua `Switch` ke area kosong di halaman.
+14. Klik `Add a Link` dan tambahkan link untuk menghubungkan setiap node dan switch.
+15. Kita perlu melakukan setting network pada masing-masing node dengan fitur `Edit network configuration`, untuk konfigurasi network pada masing - masing node diisi dengan setting sebagai berikut :
 - Ostania
 ```
 auto eth0
@@ -123,8 +112,10 @@ iface eth0 inet static
 	netmask 255.255.255.0
 	gateway 192.173.3.1
 ```
-17. Restart semua node.
-18. Topologi sudah bisa berjalan secara lokal, namun untuk mengakses jaringan keluar maka perlu dilakukan beberapa konfigurasi sebagai berikut :
+16. Restart semua node. Dihasilkan topologi sebagai berikut: <br/>
+![image](pics/topologi.png)
+<br/>
+17. Topologi sudah bisa berjalan secara lokal, namun untuk mengakses jaringan keluar maka perlu dilakukan beberapa konfigurasi sebagai berikut :
 - Ketikkan command berikut pada console router `Ostania`:
 ```
 cd
@@ -135,14 +126,10 @@ bash enable-internet.sh
 cd
 bash no1.sh
 ```
-- Restart kembali semua node.
-19. Semua node sekarang sudah bisa melakukan ping ke www.google.com (sudah terhubung ke internet).
-
-<br>
 Catatan: node `Garden` tidak dilakukan apa-apa karena peran `client` sudah diwakilkan oleh node `SSS`.
 
 ### Penjelasan File .sh
-1. enable-internet.sh
+1. enable-internet.sh pada `Ostania`
 - Command berikut digunakan untuk menghubungkan router Ostania ke internet
 ```
 iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE -s 192.173.0.0/16
@@ -150,111 +137,178 @@ echo nameserver 192.168.122.1 > /etc/resolv.conf
 ```
 
 2. no1.sh
-- Pada `SSS`, digunakan untuk install package `dnsutils` dan `lynx`.
+- Pada `SSS`, digunakan untuk install package `dnsutils` dan `lynx`, serta untuk setting nameserver. <br/>
+```
+echo -e '
+nameserver 192.173.2.2
+nameserver 192.168.122.1
+' > /etc/resolv.conf
+
+echo 'downloading necessary package'
+sleep 1
+
+apt-get update
+apt-get install dnsutils -y
+apt-get install lynx -y
+```
 ![image](pics/SSS_no1-1.png)
 ![image](pics/SSS_no1-2.png)
 
-- Pada `WISE` `dan berlint`, digunakan untuk install package `bind9`.
+- Pada `WISE` `dan `berlint`, digunakan untuk install package `bind9` serta setting nameserver.
+```
+echo "installing necessary package(s) for DNS Master"
+echo nameserver 192.168.122.1 > /etc/resolv.conf
+apt-get update
+apt-get install bind9 -y
+```
 ![image](pics/WISE_no1-1.png)
 ![image](pics/WISE_no1-2.png)
+
+- Pada `berlint` digunakan untuk install package `bind9` serta setting nameserver.
+```
+echo -e '
+echo "installing necessary package(s) for DNS Slave"
+echo nameserver 192.168.122.1 > /etc/resolv.conf
+apt-get update
+apt-get install bind9 -y
+```
 ![image](pics/berlint_no1-1.png)
 ![image](pics/berlint_no1-2.png)
 
-- Pada `Eden`, digunakan untuk install package `apache2` dan `php`.
-
-
+- Pada `Eden`, digunakan untuk install package `apache2`, `php`, `libapache2-mod-php7.0`, `unzip`, dan `git`; serta setting nameserver.
+```
+echo "installing necessary package(s) for Web Server"
+echo nameserver 192.168.122.1 > /etc/resolv.conf
+apt-get update
+apt-get install apache2 -y
+apt-get install libapache2-mod-php7.0 -y
+apt-get install php -y
+apt-get install unzip -y
+apt-get install git -y
+```
+![image](pics/Eden_no1-1.png)
+![image](pics/Eden_no1-2,png)
+<br/>
 ## Nomor 2
 ### Soal
+Untuk mempermudah mendapatkan informasi mengenai misi dari Handler, bantulah Loid membuat website utama dengan akses wise.yyy.com dengan alias www.wise.yyy.com pada folder wise
+<br/>
 ### Penyelesaian
-### Penjelasan File .sh
-### Screenshot
+- Pada wise (file `no2.sh`)
+  - Membuat file `no2.sh` pada root dan mengisinya dengan hal-hal berikut:<br/>
+  - Membuat zone "wise.b01.com" pada file named.conf.local
+```
+echo -e '
+zone "wise.b01.com" {
+        type master;
+        file "/etc/bind/wise/wise.b01.com";
+};
+ ' > /etc/bind/named.conf.local
+```
+<br/>
+
+  - Membuat folder wise
+```
+mkdir /etc/bind/wise
+```
+  - Menyalin file `db.local` ke dalam folder `wise` dan menamakannya `wise.b01.com`
+```
+cp /etc/bind/db.local /etc/bind/wise/wise.b01.com
+```
+  - Melakukan konfigurasi file `wise.b01.com`
+```
+echo -e '
+;
+; BIND data file for local loopback interface
+;
+$TTL    604800
+@       IN      SOA     wise.b01.com. root.wise.b01.com. (
+                        2               ; Serial
+                        604800          ; Refresh
+                        86400           ; Retry
+                        2419200         ; Expire
+                        604800 )        ; Negative Cache TTL
+;
+@       IN      NS      wise.b01.com.
+@       IN      A       192.173.3.3
+www     IN      CNAME   wise.b01.com.
+@       IN      AAAA    ::1
+' > /etc/bind/wise/wise.b01.com
+```
+
+<br/>
 
 ## Nomor 3
 ### Soal
 ### Penyelesaian
 ### Penjelasan File .sh
-### Screenshot
 
 ## Nomor 4
 ### Soal
 ### Penyelesaian
 ### Penjelasan File .sh
-### Screenshot
 
 ## Nomor 5
 ### Soal
 ### Penyelesaian
 ### Penjelasan File .sh
-### Screenshot
 
 ## Nomor 6
 ### Soal
 ### Penyelesaian
 ### Penjelasan File .sh
-### Screenshot
 
 ## Nomor 7
 ### Soal
 ### Penyelesaian
 ### Penjelasan File .sh
-### Screenshot
 
 ## Nomor 8
 ### Soal
 ### Penyelesaian
 ### Penjelasan File .sh
-### Screenshot
 
 ## Nomor 9
 ### Soal
 ### Penyelesaian
 ### Penjelasan File .sh
-### Screenshot
 
 ## Nomor 10
 ### Soal
 ### Penyelesaian
 ### Penjelasan File .sh
-### Screenshot
 
 ## Nomor 11
 ### Soal
 ### Penyelesaian
 ### Penjelasan File .sh
-### Screenshot
 
 ## Nomor 12
 ### Soal
 ### Penyelesaian
 ### Penjelasan File .sh
-### Screenshot
 
 ## Nomor 13
 ### Soal
 ### Penyelesaian
 ### Penjelasan File .sh
-### Screenshot
 
 ## Nomor 14
 ### Soal
 ### Penyelesaian
 ### Penjelasan File .sh
-### Screenshot
 
 ## Nomor 15
 ### Soal
 ### Penyelesaian
 ### Penjelasan File .sh
-### Screenshot
 
 ## Nomor 16
 ### Soal
 ### Penyelesaian
 ### Penjelasan File .sh
-### Screenshot
 
 ## Nomor 17
 ### Soal
 ### Penyelesaian
 ### Penjelasan File .sh
-### Screenshot
