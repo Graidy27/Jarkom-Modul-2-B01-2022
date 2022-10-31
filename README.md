@@ -550,7 +550,7 @@ Foto ketika file `no8.sh` dijalankan
 
 2. Untuk check, membuat file `no8-check.sh` pada `SSS` (client), lalu mengisinya dengan command `lynx www.wise.b01.com`<br/><br/>
 Foto ketika file `no8-check.sh` dijalankan
-![image](pics/SSS_noSSS_no8-9-16.png)
+![image](pics/SSS_no8-9-16.png)
 <br/>
 
 ## Nomor 9
@@ -566,7 +566,7 @@ Setelah itu, Loid juga membutuhkan agar url www.wise.yyy.com/index.php/home dapa
 	AllowOverride All
 </Directory
 ```
-- Membuat file `.htaccess` di dalam `wise.b01.com`
+- Membuat file `.htaccess` di dalam folder `wise.b01.com` dan mengisinya dengan command berikut
 ```
 echo 'RewriteEngine On
 RewriteEngine On
@@ -582,7 +582,7 @@ Foto ketika file `no9.sh` dijalankan
 
 2. Untuk check, membuat file `no9-check.sh` pada `SSS` (client), lalu mengisinya dengan command `lynx www.wise.b01.com/home`<br/><br/>
 Foto ketika file `no9-check.sh` dijalankan
-![image](pics/SSS_noSSS_no8-9-16.png)
+![image](pics/SSS_no8-9-16.png)
 <br/>
 
 ## Nomor 10
@@ -619,7 +619,7 @@ Foto ketika file `no10.sh` dijalankan
 
 2. Untuk check, membuat file `no10-check.sh` pada `SSS` (client), lalu mengisinya dengan command `lynx www.eden.wise.b01.com`<br/><br/>
 Foto ketika file `no10-check.sh` dijalankan
-![image](pics/SSS_noSSS_no10.png)
+![image](pics/SSS_no10.png)
 <br/>
 
 ## Nomor 11
@@ -627,16 +627,21 @@ Foto ketika file `no10-check.sh` dijalankan
 Akan tetapi, pada folder /public, Loid ingin hanya dapat melakukan directory listing saja
 ### Penyelesaian
 1. Di `Eden`
-- 
+- Menambahkan code berikut pada file `eden.wise.b01.com.conf`
+```
+<Directory /var/www/eden.wise.b01.com/public>
+	Options +Indexes
+</Directory>
+```
 - Menjalankan ulang service `apache2` dengan `service apache2 restart` <br/><br/>
-Foto ketika file `no10.sh` dijalankan
-![image](pics/Eden_no10.png)
+Foto ketika file `no11.sh` dijalankan
+![image](pics/Eden_no11.png)
 <br/>
 
 
-2. Untuk check, membuat file `no10-check.sh` pada `SSS` (client), lalu mengisinya dengan command `lynx www.eden.wise.b01.com/public`<br/><br/>
-Foto ketika file `no10-check.sh` dijalankan
-![image](pics/SSS_noSSS_no10.png)
+2. Untuk check, membuat file `no11-check.sh` pada `SSS` (client), lalu mengisinya dengan command `lynx www.eden.wise.b01.com/public`<br/><br/>
+Foto ketika file `no11-check.sh` dijalankan
+![image](pics/SSS_no11.png)
 <br/>
 
 ## Nomor 12
@@ -644,16 +649,19 @@ Foto ketika file `no10-check.sh` dijalankan
 Tidak hanya itu, Loid juga ingin menyiapkan error file 404.html pada folder /error untuk mengganti error kode pada apache
 ### Penyelesaian
 1. Di `Eden`
-- 
+- Menambahkan code berikut pada file `eden.wise.b01.com.conf`
+```
+ErrorDocument 404 /error/404.html
+```
 - Menjalankan ulang service `apache2` dengan `service apache2 restart` <br/><br/>
-Foto ketika file `no10.sh` dijalankan
-![image](pics/Eden_no10.png)
+Foto ketika file `no12.sh` dijalankan
+![image](pics/Eden_no12.png)
 <br/>
 
 
-2. Untuk check, membuat file `no10-check.sh` pada `SSS` (client), lalu mengisinya dengan command `lynx www.eden.wise.b01.com/yor_forger`<br/><br/>
-Foto ketika file `no10-check.sh` dijalankan
-![image](pics/SSS_noSSS_no10.png)
+2. Untuk check, membuat file `no12-check.sh` pada `SSS` (client), lalu mengisinya dengan command `lynx www.eden.wise.b01.com/yor_forger`<br/><br/>
+Foto ketika file `no12-check.sh` dijalankan
+![image](pics/SSS_no12.png)
 <br/>
 
 ## Nomor 13
@@ -661,16 +669,19 @@ Foto ketika file `no10-check.sh` dijalankan
 Loid juga meminta Franky untuk dibuatkan konfigurasi virtual host. Virtual host ini bertujuan untuk dapat mengakses file asset www.eden.wise.yyy.com/public/js menjadi www.eden.wise.yyy.com/js
 ### Penyelesaian
 1. Di `Eden`
-- 
+- Menambahkan code berikut pada file `eden.wise.b01.com.conf`
+```
+Alias "/js" "/var/www/eden.wise.b01.com/public/js"
+```
 - Menjalankan ulang service `apache2` dengan `service apache2 restart` <br/><br/>
-Foto ketika file `no10.sh` dijalankan
-![image](pics/Eden_no10.png)
+Foto ketika file `no13.sh` dijalankan
+![image](pics/Eden_no13.png)
 <br/>
 
 
-2. Untuk check, membuat file `no10-check.sh` pada `SSS` (client), lalu mengisinya dengan command `lynx www.eden.wise.b01.com/js`<br/><br/>
-Foto ketika file `no10-check.sh` dijalankan
-![image](pics/SSS_noSSS_no10.png)
+2. Untuk check, membuat file `no13-check.sh` pada `SSS` (client), lalu mengisinya dengan command `lynx www.eden.wise.b01.com/js`<br/><br/>
+Foto ketika file `no13-check.sh` dijalankan
+![image](pics/SSS_no13.png)
 <br/>
 
 ## Nomor 14
@@ -678,10 +689,35 @@ Foto ketika file `no10-check.sh` dijalankan
 Loid meminta agar www.strix.operation.wise.yyy.com hanya bisa diakses dengan port 15000 dan port 15500
 ### Penyelesaian
 1. Di `Eden`
-- 
+- Membuat file `strix.operation.wise.b01.com.conf` pada `/etc/apache2/sites-available`
+```
+cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/.wise.b01.com.conf
+```
+- Mengonfigurasi file `strix.operation.wise.b01.com.conf`
+```
+echo -e '
+<VirtualHost *:15000 *:15500>
+        ServerAdmin webmaster@localhost
+        DocumentRoot /var/www/strix.operation.wise.b01.com
+        ServerName strix.operation.wise.b01.com
+        ServerAlias www.strix.operation.wise.b01.com
+
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+' > /etc/apache2/sites-available/strix.operation.wise.b01.com.conf
+```
+- Menyalakan konfigurasi `strix.operation.wise.b01.com.conf` dengan `a2ensite strix.operation.wise.b01.com.conf`
+- Menyalin folder `strix.operation.wise` dan seluruh isinya ke `/var/www` dan mengubah namanya menjadi `strix.operation.wise.b01.com`
+```cp -r strix.operation.wise /var/www/strix.operation.wise.b01.com```
+- Menambahkan port 15000 dan 15500 pada file `ports.conf` di path `/etc/apache2/`
+```
+Listen 15000
+Listen 15500
+```
 - Menjalankan ulang service `apache2` dengan `service apache2 restart` <br/><br/>
-Foto ketika file `no10.sh` dijalankan
-![image](pics/Eden_no10.png)
+Foto ketika file `no14.sh` dijalankan
+![image](pics/Eden_no14.png)
 <br/>
 
 
@@ -691,7 +727,7 @@ lynx http://192.173.3.3:15000
 lynx http://192.173.3.3:15500
 ```
 Foto ketika file `no14-15-check.sh` dijalankan
-![image](pics/SSS_noSSS_no10.png)
+![image](pics/SSS_no14.png)
 (baik port 15000 maupun 15500 menampilkan hal yang sama) <br/><br/>
 
 ## Nomor 15
@@ -699,10 +735,19 @@ Foto ketika file `no14-15-check.sh` dijalankan
 dengan autentikasi username Twilight dan password opStrix dan file di /var/www/strix.operation.wise.yyy
 ### Penyelesaian
 1. Di `Eden`
-- 
+- Menambahkan command berikut ke dalam konfigurasi file `strix.operation.wise.b01.com.conf`
+```
+<Directory "/var/www/strix.operation.wise.b01.com">
+	AuthType Basic
+	AuthName "Restricted Content"
+	AuthUserFile /etc/apache2/.htpasswd
+	Require valid-user
+</Directory>
+```
+- Membuat file user `Twiight` dengan menggunakan command `htpasswd -c /etc/apache2/.htpasswd Twilight`. Pada saat diminta memasukkan password, masukkan `opStrix`
 - Menjalankan ulang service `apache2` dengan `service apache2 restart` <br/><br/>
-Foto ketika file `no10.sh` dijalankan
-![image](pics/Eden_no10.png)
+Foto ketika file `no15.sh` dijalankan
+![image](pics/Eden_no15.png)
 <br/>
 
 
@@ -712,7 +757,10 @@ lynx http://192.173.3.3:15000
 lynx http://192.173.3.3:15500
 ```
 Foto ketika file `no14-15-check.sh` dijalankan
-![image](pics/SSS_noSSS_no10.png)
+![image](pics/SSS_no15-1.png)<br/>
+![image](pics/SSS_no15-2.png)<br/>
+![image](pics/SSS_no15-3.png)<br/>
+
 (baik port 15000 maupun 15500 menampilkan hal yang sama) <br/><br/>
 
 ## Nomor 16
@@ -720,16 +768,29 @@ Foto ketika file `no14-15-check.sh` dijalankan
 dan setiap kali mengakses IP Eden akan dialihkan secara otomatis ke www.wise.yyy.com
 ### Penyelesaian
 1. Di `Eden`
-- 
+- Membuat file `.htaccess` di dalam folder `/var/www/html` dan mengisinya dengan command berikut
+```
+echo 'RewriteEngine On
+RewriteBase /
+RewriteCond %{HTTP_HOST} ^192\.173\.3\.3$
+RewriteRule ^(.*)$ http://www.wise.b01.com/$1 [L,R=301]
+' > /var/www/html/.htaccess
+```
+- Menambahkan command berikut ke dalam konfigurasi file `000-default.conf` di dalam folder `/etc/apache2/sites-available/`
+```
+<Directory /var/www/html>
+	AllowOverride All
+</Directory>
+```
 - Menjalankan ulang service `apache2` dengan `service apache2 restart` <br/><br/>
 Foto ketika file `no16.sh` dijalankan
 ![image](pics/Eden_no16.png)
 <br/>
 
 
-2. Untuk check, membuat file `no8-check.sh` pada `SSS` (client), lalu mengisinya dengan command `lynx http://192.173.3.3`<br/><br/>
-Foto ketika file `no8-check.sh` dijalankan
-![image](pics/SSS_noSSS_no8-9-16.png)
+2. Untuk check, membuat file `no16-check.sh` pada `SSS` (client), lalu mengisinya dengan command `lynx http://192.173.3.3`<br/><br/>
+Foto ketika file `no16-check.sh` dijalankan
+![image](pics/SSS_no8-9-16.png)
 <br/>
 
 ## Nomor 17
@@ -737,7 +798,21 @@ Foto ketika file `no8-check.sh` dijalankan
 Karena website www.eden.wise.yyy.com semakin banyak pengunjung dan banyak modifikasi sehingga banyak gambar-gambar yang random, maka Loid ingin mengubah request gambar yang memiliki substring “eden” akan diarahkan menuju eden.png. Bantulah Agent Twilight dan Organisasi WISE menjaga perdamaian!
 ### Penyelesaian
 1. Di `Eden`
-- 
+- Membuat file `.htaccess` di dalam folder `/var/www/eden.wise.b01.com/` dan mengisinya dengan command berikut
+```
+echo '
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)eden(.*)$ /public/images/eden.png [R=301,L]
+#RewriteRule ^(.*)eden(.*)$ /public/images/eden-student.jpg [R=301,L]
+' > /var/www/eden.wise.b01.com/.htaccess
+```
+- Menambahkan command berikut ke dalam konfigurasi file `eden.wise.b01.com.conf` di dalam folder `/etc/apache2/sites-available/`
+```
+<Directory /var/www/eden.wise.b01.com>
+	AllowOverride All
+</Directory>
+```
 - Menjalankan ulang service `apache2` dengan `service apache2 restart` <br/><br/>
 Foto ketika file `no17.sh` dijalankan
 ![image](pics/Eden_no17.png)
@@ -746,5 +821,6 @@ Foto ketika file `no17.sh` dijalankan
 
 2. Untuk check, membuat file `no17.sh` pada `SSS` (client), lalu mengisinya dengan command `lynx eden.wise.b01.com/public/images/eden-student`<br/><br/>
 Foto ketika file `no17.sh` dijalankan
-![image](pics/SSS_noSSS_no17.png)
+![image](pics/SSS_no17-1.png) <br/>
+![image](pics/SSS_no17-2.png) <br/>
 <br/>
