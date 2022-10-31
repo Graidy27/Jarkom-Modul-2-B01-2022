@@ -238,8 +238,8 @@ www     IN      CNAME   wise.b01.com.
 <br/>
 <br/>
 Foto ketika file `no2.sh` dijalankan <br/>
-![image](pics/WISE_no2.png)
-<br/>
+![image](pics/Eden_no1-2.png)
+
 
 2. Untuk check, membuat file `no2-check.sh` pada `SSS` (client), lalu mengisinya dengan command berikut:<br/>
 - setting nameserver
