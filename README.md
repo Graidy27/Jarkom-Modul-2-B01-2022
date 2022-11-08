@@ -116,12 +116,12 @@ iface eth0 inet static
 ![image](pics/topologi.png)
 <br/>
 17. Topologi sudah bisa berjalan secara lokal, namun untuk mengakses jaringan keluar maka perlu dilakukan beberapa konfigurasi sebagai berikut :
-- Ketikkan command berikut pada console router `Ostania`:
+- Ketikkan command berikut pada console router `Ostania`
 ```
 cd
 bash enable-internet.sh
 ```
-- Pada node `SSS`, `WISE`, `Berlint`, dan `Eden` ketikkan command berikut:
+- Pada node `SSS`, `WISE`, `Berlint`, dan `Eden` ketikkan command berikut
 ```
 cd
 bash no1.sh
