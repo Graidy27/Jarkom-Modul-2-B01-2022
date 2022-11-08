@@ -30,7 +30,7 @@ Anggota :
 ## Pembagian Tugas
 > Ichsanul Aulia - 7 hingga 11\
 > Alfin Indrawan - 1 hingga 6\
-> Graidy Megananda - 12 hingga
+> Graidy Megananda - 12 hingga 17
 
 ## Nomor 1
 ### Soal
